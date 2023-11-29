@@ -1,5 +1,11 @@
+import { Searchbar } from '../../components/searchbar/Searchbar';
+
 const Movie = () => {
-  return <div>Movie Search form</div>;
+  return (
+    <div>
+      <Searchbar />
+    </div>
+  );
 };
 
 export default Movie;

@@ -1,5 +1,73 @@
+import { useParams, Link, Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchMovieDetailsId } from '../../api';
+import { Loader } from '../../components/loader/Loader';
+
 const MovieDetails = () => {
-  return <div>MovieDetails</div>;
+  const { movieId } = useParams();
+  // const location = useLocation();
+  const [movieInfo, setMovieInfo] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getDetails(movieId) {
+      try {
+        setLoading(true);
+        const movieInfo = await fetchMovieDetailsId(movieId);
+
+        if (movieInfo) setMovieInfo(movieInfo);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getDetails();
+  }, [movieId]);
+
+  if (!movieInfo) {
+    return;
+  }
+
+  const { title, popularity, overview, genres } = movieInfo;
+
+  return (
+    <div>
+      {loading && <Loader />}
+      <button type="button">Go back</button>
+
+      {movieInfo && (
+        <div>
+          <img width="" src="" alt={title} />
+          <h1>{title}</h1>
+          <p>User score: {popularity}</p>
+          <h2>Overview</h2>
+          <p>{overview}</p>
+          <h2>Genres</h2>
+          <ul>
+            {genres.map(genre => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <hr />
+      <div>
+        <h3>Additional information</h3>
+        <ul>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+        </ul>
+        <hr />
+        <Outlet />
+      </div>
+    </div>
+  );
 };
 
 export default MovieDetails;
