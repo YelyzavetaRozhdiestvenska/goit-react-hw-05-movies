@@ -10,6 +10,8 @@ export const fetchTrending = async () => {
       params: { language: 'en-US' },
       headers: {
         accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
       },
     });
 
@@ -27,6 +29,8 @@ export const fetchSearchMovie = async query => {
         params: { include_adult: 'false', language: 'en-US', page: '1' },
         headers: {
           accept: 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
         },
       }
     );
@@ -39,10 +43,12 @@ export const fetchSearchMovie = async query => {
 
 export const fetchMovieDetailsId = async movieId => {
   try {
-    const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`, {
-      params: { language: 'en-US' },
+    const response = await axios.get(`/movie/${movieId}`, {
+      params: { language: 'en-US', key: API_KEY },
       headers: {
         accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
       },
     });
 
@@ -60,6 +66,8 @@ export const fetchMovieCast = async movieId => {
         params: { language: 'en-US' },
         headers: {
           accept: 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
         },
       }
     );
@@ -78,6 +86,8 @@ export const fetchMovieReviews = async movieId => {
         params: { language: 'en-US', page: '1' },
         headers: {
           accept: 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
         },
       }
     );

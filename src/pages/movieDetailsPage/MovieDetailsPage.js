@@ -10,10 +10,10 @@ const MovieDetails = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getDetails(movieId) {
+    async function getDetails(id) {
       try {
         setLoading(true);
-        const movieInfo = await fetchMovieDetailsId(movieId);
+        const movieInfo = await fetchMovieDetailsId(id);
 
         if (movieInfo) setMovieInfo(movieInfo);
       } catch (error) {
@@ -22,33 +22,40 @@ const MovieDetails = () => {
         setLoading(false);
       }
     }
-    getDetails();
+
+    getDetails(movieId);
   }, [movieId]);
 
   if (!movieInfo) {
     return;
   }
 
-  const { title, popularity, overview, genres } = movieInfo;
+  const { title, popularity, overview, genres, poster_path } = movieInfo;
+
+  const imageWidth = 300;
+  const imageBaseUrl = `https://image.tmdb.org/t/p/w${imageWidth}`;
 
   return (
     <div>
+      <hr />
       {loading && <Loader />}
       <button type="button">Go back</button>
 
       {movieInfo && (
         <div>
-          <img width="" src="" alt={title} />
-          <h1>{title}</h1>
-          <p>User score: {popularity}</p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h2>Genres</h2>
-          <ul>
-            {genres.map(genre => (
-              <li key={genre.id}>{genre.name}</li>
-            ))}
-          </ul>
+          <img src={`${imageBaseUrl}${poster_path}`} alt={title} />
+          <div>
+            <h1>{title}</h1>
+            <p>User score: {popularity}</p>
+            <h2>Overview</h2>
+            <p>{overview}</p>
+            <h2>Genres</h2>
+            <ul>
+              {genres.map(genre => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
 
