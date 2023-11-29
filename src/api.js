@@ -10,7 +10,6 @@ export const fetchTrending = async () => {
       params: { language: 'en-US' },
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 3e2b762d9897a8b69271b0604b0188d9',
       },
     });
 
@@ -28,7 +27,6 @@ export const fetchSearchMovie = async query => {
         params: { include_adult: 'false', language: 'en-US', page: '1' },
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer 3e2b762d9897a8b69271b0604b0188d9',
         },
       }
     );
@@ -45,7 +43,6 @@ export const fetchMovieDetailsId = async movieId => {
       params: { language: 'en-US' },
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer 3e2b762d9897a8b69271b0604b0188d9',
       },
     });
 
@@ -63,7 +60,6 @@ export const fetchMovieCast = async movieId => {
         params: { language: 'en-US' },
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer 3e2b762d9897a8b69271b0604b0188d9',
         },
       }
     );
@@ -82,7 +78,6 @@ export const fetchMovieReviews = async movieId => {
         params: { language: 'en-US', page: '1' },
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer 3e2b762d9897a8b69271b0604b0188d9',
         },
       }
     );

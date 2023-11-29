@@ -1,11 +1,16 @@
-const { useParams } = require('react-router-dom');
+import { useLocation, Link } from 'react-router-dom';
 
-export const TrendingList = () => {
-  const { items } = useParams();
-
-  // useEffect(() => {
-  // HTTP запрос, если нужно
-  // }, [])
-
-  return <div>movie Gallery: {items}</div>;
+export const TrendingList = ({ items }) => {
+  const location = useLocation();
+  return (
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>
+          <Link to={`/movies/${item.id}`} state={{ from: location }}>
+            {item.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 };

@@ -12,9 +12,9 @@ const HomePage = () => {
       try {
         setLoading(true);
         const trendList = await fetchTrending();
-        setTrendList(trendList);
+
+        if (trendList) setTrendList(trendList);
       } catch (error) {
-        setLoading(false);
         console.log(error);
       } finally {
         setLoading(false);
