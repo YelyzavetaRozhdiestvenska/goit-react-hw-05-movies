@@ -2,6 +2,7 @@ import { useParams, Link, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieDetailsId } from '../../api';
 import { Loader } from '../../components/loader/Loader';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -39,7 +40,10 @@ const MovieDetails = () => {
     <div>
       <hr />
       {loading && <Loader />}
-      <button type="button">Go back</button>
+      <button type="button">
+        <AiOutlineArrowLeft />
+        Go back
+      </button>
 
       {movieInfo && (
         <div>

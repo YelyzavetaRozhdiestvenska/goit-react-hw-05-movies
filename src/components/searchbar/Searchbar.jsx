@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { FcSearch } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 import {
@@ -8,14 +8,20 @@ import {
   Input,
 } from './searchbar.styled';
 
-export const Searchbar = ({ onSubmit, query }) => {
+export const Searchbar = ({ searchMovie }) => {
+  const [query, setQuery] = useState(' ');
+
+  const handleChange = event => {
+    setQuery(event.target.value);
+  };
+
   const handleSubmit = evt => {
     evt.preventDefault();
-    if (evt.target.elements.query.value.trim() === '') {
+    if (evt.target.value.trim() === '') {
       toast.error('Input search movie!');
       return;
     }
-    onSubmit(evt.target.elements.query.value);
+    searchMovie(query);
     evt.target.reset();
   };
 
@@ -33,6 +39,8 @@ export const Searchbar = ({ onSubmit, query }) => {
           autoComplete="off"
           autoFocus
           placeholder="Search movie"
+          value={query}
+          onChange={handleChange}
         />
       </SearchForm>
     </>
