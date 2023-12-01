@@ -1,5 +1,4 @@
 import { Loader } from '../../components/loader/Loader';
-import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchSearchMovie } from '../../api';
 import { Searchbar } from '../../components/searchbar/Searchbar';
@@ -8,7 +7,7 @@ import { TrendingList } from 'components/trendingList/TrendingList';
 const Movie = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { query } = useParams();
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     async function getSearchMovies() {
@@ -28,7 +27,7 @@ const Movie = () => {
 
   return (
     <div>
-      <Searchbar searchMovie={searchMovie} />
+      <Searchbar searchMovie={setQuery} />
       {loading && <Loader />}
       {searchMovie && <TrendingList items={searchMovie} />}
     </div>

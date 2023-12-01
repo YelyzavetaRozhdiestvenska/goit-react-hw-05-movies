@@ -1,5 +1,46 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchMovieReviews } from '../../api';
+import { Loader } from '../../components/loader/Loader';
+
 const Reviews = () => {
-  return <div>Cast</div>;
+  const { movieId } = useParams();
+  const [movieReviews, setMovieReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getReviews() {
+      try {
+        setLoading(true);
+        const movieReviews = await fetchMovieReviews(movieId);
+
+        if (movieReviews) setMovieReviews(movieReviews);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getReviews();
+  }, [movieId]);
+
+  <div>
+    {loading && <Loader />}
+    {movieReviews.length && (
+      <div>
+        <ul>
+          {movieReviews.map(({ id, author, content }) => (
+            <li key={id}>
+              <h3>Autor: {author}</h3>
+              <p> {content}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+    {!movieReviews.length && <div>We don't have any reviews for this movie</div>}
+  </div>;
 };
 
 export default Reviews;

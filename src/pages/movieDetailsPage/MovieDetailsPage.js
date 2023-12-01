@@ -6,7 +6,6 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  // const location = useLocation();
   const [movieInfo, setMovieInfo] = useState(null);
   const [loading, setLoading] = useState(false);
 
