@@ -1,16 +1,17 @@
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { List, StyleItem, StyledLink } from './TrendingList.styled';
 
 export const TrendingList = ({ items }) => {
   const location = useLocation();
   return (
-    <ul>
+    <List>
       {items.map(item => (
-        <li key={item.id}>
-          <Link to={`/movies/${item.id}`} state={{ from: location }}>
+        <StyleItem key={item.id}>
+          <StyledLink to={`/movies/${item.id}`} state={{ from: location }}>
             {item.title}
-          </Link>
-        </li>
+          </StyledLink>
+        </StyleItem>
       ))}
-    </ul>
+    </List>
   );
 };

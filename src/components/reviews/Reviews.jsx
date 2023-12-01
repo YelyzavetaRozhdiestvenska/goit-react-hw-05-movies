@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../api';
 import { Loader } from '../../components/loader/Loader';
+import { Item, H3 } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -25,22 +26,30 @@ const Reviews = () => {
     getReviews();
   }, [movieId]);
 
-  <div>
-    {loading && <Loader />}
-    {movieReviews.length && (
+  return (
+    <>
+      {loading && <Loader />}
+
       <div>
         <ul>
-          {movieReviews.map(({ id, author, content }) => (
-            <li key={id}>
-              <h3>Autor: {author}</h3>
-              <p> {content}</p>
-            </li>
-          ))}
+          {movieReviews.length ? (
+            movieReviews.map(review => {
+              const { id, author, content } = review;
+
+              return (
+                <Item key={id}>
+                  <H3>Autor: {author}</H3>
+                  <p>{content}</p>
+                </Item>
+              );
+            })
+          ) : (
+            <p>We don't have any reviews for this movie</p>
+          )}
         </ul>
       </div>
-    )}
-    {!movieReviews.length && <div>We don't have any reviews for this movie</div>}
-  </div>;
+    </>
+  );
 };
 
 export default Reviews;

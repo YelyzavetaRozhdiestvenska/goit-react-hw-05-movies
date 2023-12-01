@@ -23,17 +23,14 @@ export const fetchTrending = async () => {
 
 export const fetchSearchMovie = async query => {
   try {
-    const response = await axios.get(
-      `/search/movie?query=${query}&api_key=${API_KEY}`,
-      {
-        params: { include_adult: 'false', language: 'en-US', page: '1' },
-        headers: {
-          accept: 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
-        },
-      }
-    );
+    const response = await axios.get(`/search/movie?query=${query}&api_key=${API_KEY}`, {
+      params: { include_adult: 'false', language: 'en-US', page: '1' },
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
+      },
+    });
 
     return response.data.results;
   } catch (error) {
@@ -60,17 +57,14 @@ export const fetchMovieDetailsId = async movieId => {
 
 export const fetchMovieCast = async movieId => {
   try {
-    const response = await axios.get(
-      `movie/${movieId}/credits?api_key=${API_KEY}`,
-      {
-        params: { language: 'en-US' },
-        headers: {
-          accept: 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
-        },
-      }
-    );
+    const response = await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}`, {
+      params: { language: 'en-US' },
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
+      },
+    });
 
     return response.data.cast;
   } catch (error) {
@@ -80,17 +74,14 @@ export const fetchMovieCast = async movieId => {
 
 export const fetchMovieReviews = async movieId => {
   try {
-    const response = await axios.get(
-      `movie/${movieId}/reviews?api_key=${API_KEY}`,
-      {
-        params: { language: 'en-US', page: '1' },
-        headers: {
-          accept: 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
-        },
-      }
-    );
+    const response = await axios.get(`movie/${movieId}/reviews?api_key=${API_KEY}`, {
+      params: { language: 'en-US', page: '1' },
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGM4ZmFiMGY5OTAzYWI2NmVjY2E1NmQwZTlhNTM0NyIsInN1YiI6IjY1Njc4ZWRmYzJiOWRmMDEzYWU0OGIwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zc8DAVn7o43o4vjNOjXUZBvAExs1g5nccsAu486N3RY',
+      },
+    });
 
     return response.data.results;
   } catch (error) {

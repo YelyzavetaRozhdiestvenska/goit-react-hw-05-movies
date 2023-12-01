@@ -28,6 +28,7 @@ const Movie = () => {
   return (
     <div>
       <Searchbar searchMovie={setQuery} />
+
       {loading && <Loader />}
       {searchMovie && <TrendingList items={searchMovie} />}
     </div>

@@ -1,13 +1,16 @@
-import { useParams, Link, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
 import { fetchMovieDetailsId } from '../../api';
 import { Loader } from '../../components/loader/Loader';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { Wrapper, H1, H2, StyleItem, List, StyledLink } from './MovieDetailsPage.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
     async function getDetails(id) {
@@ -39,42 +42,45 @@ const MovieDetails = () => {
     <div>
       <hr />
       {loading && <Loader />}
-      <button type="button">
-        <AiOutlineArrowLeft />
-        Go back
-      </button>
+      <Link to={backLinkHref}>
+        <button>
+          <AiOutlineArrowLeft />
+        </button>
+      </Link>
 
       {movieInfo && (
-        <div>
+        <Wrapper>
           <img src={`${imageBaseUrl}${poster_path}`} alt={title} />
           <div>
-            <h1>{title}</h1>
+            <H1>{title}</H1>
             <p>User score: {popularity}</p>
-            <h2>Overview</h2>
+            <H2>Overview</H2>
             <p>{overview}</p>
-            <h2>Genres</h2>
-            <ul>
+            <H2>Genres</H2>
+            <List>
               {genres.map(genre => (
-                <li key={genre.id}>{genre.name}</li>
+                <StyleItem key={genre.id}>{genre.name}</StyleItem>
               ))}
-            </ul>
+            </List>
           </div>
-        </div>
+        </Wrapper>
       )}
 
       <hr />
       <div>
         <h3>Additional information</h3>
-        <ul>
+        <List>
+          <StyleItem>
+            <StyledLink to="cast">Cast</StyledLink>
+          </StyleItem>
           <li>
-            <Link to="cast">Cast</Link>
+            <StyledLink to="reviews">Reviews</StyledLink>
           </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
+        </List>
         <hr />
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );

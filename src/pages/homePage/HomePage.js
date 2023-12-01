@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { fetchTrending } from '../../api';
 import { Loader } from '../../components/loader/Loader';
 import { TrendingList } from '../../components/trendingList/TrendingList';
 
 const HomePage = () => {
+  const location = useLocation();
   const [trendList, setTrendList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +29,7 @@ const HomePage = () => {
     <div>
       <h1>Tranding today</h1>
       {loading && <Loader />}
-      <TrendingList items={trendList} />
+      <TrendingList items={trendList} state={{ from: location }} />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieCast } from '../../api';
 import { Loader } from '../../components/loader/Loader';
+import { Item, Img, H3 } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -32,11 +33,11 @@ const Cast = () => {
       {loading && <Loader />}
       <ul>
         {movieCast.map(({ id, profile_path, original_name, name, character }) => (
-          <li key={id}>
-            <img src={`${imageBaseUrl}${profile_path}`} alt={name} />
-            <h3>{original_name}</h3>
+          <Item key={id}>
+            <Img src={`${imageBaseUrl}${profile_path}`} alt={name} />
+            <H3>{original_name}</H3>
             <p>Character: {character}</p>
-          </li>
+          </Item>
         ))}
       </ul>
     </div>

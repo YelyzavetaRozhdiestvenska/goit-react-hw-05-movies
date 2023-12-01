@@ -18,8 +18,8 @@ html {
    margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  color: #212121;
-  background-color: #fff;
+  color: #494D4E;
+  background-color: #BBC18F;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
     
