@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Loader } from '../../components/loader/Loader';
 import { fetchSearchMovie } from '../../api';
 import { Searchbar } from '../../components/searchbar/Searchbar';
-import { TrendingList } from 'components/trendingList/TrendingList';
+import { MovieList } from 'components/movieList/MovieList';
 
 const Movie = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
     async function getSearchMovies() {
@@ -30,7 +32,7 @@ const Movie = () => {
       <Searchbar searchMovie={setQuery} />
 
       {loading && <Loader />}
-      {searchMovie && <TrendingList items={searchMovie} />}
+      {searchMovie && <MovieList items={searchMovie} state={{ from: location }} />}
     </div>
   );
 };

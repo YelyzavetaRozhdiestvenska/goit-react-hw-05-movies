@@ -32,13 +32,25 @@ const Cast = () => {
     <div>
       {loading && <Loader />}
       <ul>
-        {movieCast.map(({ id, profile_path, original_name, name, character }) => (
-          <Item key={id}>
-            <Img src={`${imageBaseUrl}${profile_path}`} alt={name} />
-            <H3>{original_name}</H3>
-            <p>Character: {character}</p>
-          </Item>
-        ))}
+        {movieCast.length ? (
+          movieCast.map(({ id, profile_path, original_name, name, character }) => (
+            <Item key={id}>
+              <Img
+                width="92px"
+                src={
+                  profile_path
+                    ? `${imageBaseUrl}${profile_path}`
+                    : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
+                }
+                alt={name}
+              />
+              <H3>{original_name}</H3>
+              <p>Character: {character}</p>
+            </Item>
+          ))
+        ) : (
+          <p>We don't have any cast for this movie</p>
+        )}
       </ul>
     </div>
   );

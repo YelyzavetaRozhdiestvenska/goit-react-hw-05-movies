@@ -1,22 +1,22 @@
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { fetchMovieDetailsId } from '../../api';
 import { Loader } from '../../components/loader/Loader';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { Wrapper, H1, H2, StyleItem, List, StyledLink } from './MovieDetailsPage.styled';
+import { Wrapper, Title1, Title2, StyleItem, List, StyledLink } from './MovieDetailsPage.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
-    async function getDetails(id) {
+    async function getDetails() {
       try {
         setLoading(true);
-        const movieInfo = await fetchMovieDetailsId(id);
+        const movieInfo = await fetchMovieDetailsId(movieId);
 
         if (movieInfo) setMovieInfo(movieInfo);
       } catch (error) {
@@ -26,7 +26,7 @@ const MovieDetails = () => {
       }
     }
 
-    getDetails(movieId);
+    getDetails();
   }, [movieId]);
 
   if (!movieInfo) {
@@ -42,7 +42,7 @@ const MovieDetails = () => {
     <div>
       <hr />
       {loading && <Loader />}
-      <Link to={backLinkHref}>
+      <Link to={backLinkHref.current}>
         <button>
           <AiOutlineArrowLeft />
         </button>
@@ -50,13 +50,21 @@ const MovieDetails = () => {
 
       {movieInfo && (
         <Wrapper>
-          <img src={`${imageBaseUrl}${poster_path}`} alt={title} />
+          <img
+            width="300px"
+            src={
+              poster_path
+                ? `${imageBaseUrl}${poster_path}`
+                : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
+            }
+            alt={title}
+          />
           <div>
-            <H1>{title}</H1>
+            <Title1>{title}</Title1>
             <p>User score: {popularity} </p>
-            <H2>Overview</H2>
+            <Title2>Overview</Title2>
             <p>{overview}</p>
-            <H2>Genres</H2>
+            <Title2>Genres</Title2>
             <List>
               {genres.map(genre => (
                 <StyleItem key={genre.id}>{genre.name}</StyleItem>

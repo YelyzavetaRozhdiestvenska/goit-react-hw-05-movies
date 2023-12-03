@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import { List, StyleItem, StyledLink } from './TrendingList.styled';
+import { List, StyleItem, StyledLink } from './MovieList.styled';
 
-export const TrendingList = ({ items }) => {
+export const MovieList = ({ items }) => {
   const location = useLocation();
   return (
     <List>

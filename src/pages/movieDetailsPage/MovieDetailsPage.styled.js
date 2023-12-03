@@ -7,12 +7,12 @@ export const Wrapper = styled.div`
   gap: 24px;
 `;
 
-export const H1 = styled.h1`
+export const Title1 = styled.h1`
   margin-bottom: 20px;
   margin-top: 20px;
 `;
 
-export const H2 = styled.h2`
+export const Title2 = styled.h2`
   margin-bottom: 20px;
   margin-top: 20px;
 `;
