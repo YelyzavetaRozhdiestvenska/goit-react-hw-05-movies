@@ -1,25 +1,7 @@
-import { useState } from 'react';
 import { FcSearch } from 'react-icons/fc';
-import { toast } from 'react-toastify';
 import { SearchForm, SearchFormButton, ButtonLabel, Input } from './searchbar.styled';
 
-export const Searchbar = ({ searchMovie }) => {
-  const [query, setQuery] = useState('');
-
-  const handleChange = event => {
-    setQuery(event.target.value);
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    if (evt.target.value === '') {
-      toast.error('Input search movie!');
-      return;
-    }
-    searchMovie(query);
-    evt.target.reset();
-  };
-
+export const Searchbar = ({ handleChange, handleSubmit, query }) => {
   return (
     <>
       <SearchForm onSubmit={handleSubmit}>

@@ -14,8 +14,8 @@ const MovieDetails = () => {
 
   useEffect(() => {
     async function getDetails() {
+      setLoading(true);
       try {
-        setLoading(true);
         const movieInfo = await fetchMovieDetailsId(movieId);
 
         if (movieInfo) setMovieInfo(movieInfo);
