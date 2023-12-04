@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import { Layout } from './layout/Layout';
 
@@ -20,7 +20,7 @@ export const App = () => {
         </Route>
 
         <Route path="movies" element={<SearchMoviesPage />} />
-        <Route path="*" element={<HomePage />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );
